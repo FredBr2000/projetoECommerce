@@ -1,0 +1,117 @@
+<h5>Cadastro de conta de cliente</h5>
+<p>Preencha o formulário para cadastrar sua conta.</p>
+
+<div class="card mb-5">
+    <div class="card-body">
+
+        <form [formGroup]="formCadastro" autocomplete="off">
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label>Nome do cliente:</label>
+                    <input type="text" class="form-control" formControlName="nome" />
+                </div>
+                <div class="col-md-3">
+                    <label>Telefone Celular:</label>
+                    <input type="text" class="form-control" formControlName="telefone" 
+                        mask="(00) 00000-0000" />
+                </div>
+                <div class="col-md-3">
+                    <label>CPF:</label>
+                    <input type="text" class="form-control" formControlName="cpf" 
+                        mask="000.000.000-00" />
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-3">
+                    <label>Email de acesso:</label>
+                    <input type="email" class="form-control" formControlName="email" />
+                </div>
+                <div class="col-md-3">
+                    <label>Senha de acesso:</label>
+                    <input type="password" class="form-control" formControlName="senha" />
+                </div>
+                <div class="col-md-3">
+                    <label>Confirmação da senha:</label>
+                    <input type="password" class="form-control" formControlName="senhaConfirmacao" />
+                </div>
+                <div class="col-md-3">
+                    <label>Informe o seu CEP:</label>
+                    <input type="text" class="form-control" (keyup)="obterEndereco()" formControlName="cep"
+                        mask="00000-000" />
+                </div>
+            </div>
+
+            <div class="row mb-3">
+
+                <div class="col-md-12">
+
+                    <div class="card" *ngIf="endereco.logradouro">
+                        <div class="card-body">
+
+                            <div class="row">
+                                <div class="col-md-8">
+
+                                    <strong>Endereço para as entregas de pedido:</strong>
+
+                                    <table class="table table-sm table-bordered mt-3">
+                                        <tbody>
+                                            <tr>
+                                                <td width="30%">Logradouro:</td>
+                                                <td><strong>{{endereco.logradouro}}</strong></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Bairro:</td>
+                                                <td><strong>{{endereco.bairro}}</strong></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Cidade:</td>
+                                                <td><strong>{{endereco.localidade}}</strong></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Estado:</td>
+                                                <td><strong>{{endereco.uf}}</strong></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                </div>
+
+                                <div class="col-md-4">
+
+                                    <label>Número:</label>
+                                    <input type="text" class="form-control" formControlName="numero" />
+                                    <br />
+
+                                    <label>Complemento:</label>
+                                    <textarea class="form-control" formControlName="complemento"></textarea>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row">
+
+                <div class="row">
+                    <div class="col-md-12">
+
+                        <input type="submit" value="Realizar Cadastro" class="btn btn-success" />
+                        &nbsp;
+                        <a [routerLink]="['/']" class="btn btn-secondary">Cancelar</a>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </form>
+
+    </div>
+</div>

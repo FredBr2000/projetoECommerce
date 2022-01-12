@@ -1,0 +1,98 @@
+<h5>Finalizar Pedido</h5>
+
+<div class="row mt-3">
+    <div class="col-md-7">
+
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Meu Carrinho de compras</h5>
+                <p class="card-text">
+                    Produtos adicionados no carrinho:
+                </p>
+
+                <table class="table table-sm table-bordered mt-3">
+                    <thead>
+                        <tr>
+                            <th>Foto</th>
+                            <th>Nome do produto</th>
+                            <th>Preço</th>
+                            <th>Qtd</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of dados.itens">
+                            <td class="text-center">
+                                <img src="{{item.foto}}" height="50" />
+                            </td>
+                            <td>{{item.nome}}</td>
+                            <td>{{item.preco | currency : 'R$ '}}</td>
+                            <td>{{item.quantidade}}</td>
+                            <td>{{item.total | currency : 'R$ '}}</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="5">
+                                Quantidade de itens adicionados:
+                                {{dados.quantidadeItens}}
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+
+            </div>
+        </div>
+
+    </div>
+    <div class="col-md-5">
+
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Dados do Cliente da Venda</h5>
+                <p class="card-text">Resumo da venda:</p>
+
+                <table class="table table-sm table-bordered mt-3">
+                    <tbody>
+                        <tr>
+                            <td>Nome do Cliente:</td>
+                            <td width="200"></td>
+                        </tr>
+                        <tr>
+                            <td>Telefone:</td>
+                            <td width="200"></td>
+                        </tr>
+                        <tr>
+                            <td>CPF:</td>
+                            <td width="200"></td>
+                        </tr>
+                        <tr>
+                            <td>Email:</td>
+                            <td width="200"></td>
+                        </tr>
+                        <tr>
+
+                            <td>Endereço de entrega:</td>
+                            <td width="200"></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="mt-3 text-center">
+                    <h2>Total: {{dados.valorTotal
+                        | currency: 'R$ '}}</h2>
+
+                    <div class="d-grid">
+                        <button class="btn btn-success btn-lg mt-2">
+                            Realizar Compra
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

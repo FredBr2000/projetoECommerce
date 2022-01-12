@@ -1,0 +1,68 @@
+<div class="row mb-4">
+    <div class="col-md-4 offset-md-4 text-center">
+        <label>Pesquisar produtos na loja:</label>
+        <input type="text" class="form-control" placeholder="Digite sua busca aqui" [(ngModel)]="filtro" />
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 text-center">
+        <pagination-controls (pageChange)="handlePageChange($event)" previousLabel="Página anterior"
+            nextLabel="Próxima página">
+        </pagination-controls>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-3 mb-3"
+        *ngFor="let item of produtos | filter: filtro | paginate: { itemsPerPage: 4, currentPage: page }">
+
+        <div class="card">
+            <div class="card-body text-center">
+                <h5>{{item.nome}}</h5>
+                <img src="{{item.foto}}" height="180" />
+                <h3>{{item.preco | currency : 'R$ ' }}</h3>
+                <div class="d-grid mt-3">
+                    <button class="btn btn-success" (click)="obterProduto(item)" data-bs-toggle="modal"
+                        data-bs-target="#produto">
+                        Comprar!
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="produto" class="modal fade" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <img src="{{itemProduto.foto}}" class="img-fluid" />
+                    </div>
+                    <div class="col-md-8">
+                        <h3>{{itemProduto.nome}}</h3>
+                        <p>
+                            {{itemProduto.descricao}}
+                        </p>
+                        <div class="text-end">
+                            <h2>{{itemProduto.preco
+                                | currency: 'R$ '}}</h2>
+                            <p>{{itemProduto.quantidade}}
+                                unidades disponíveis.</p>
+                            <hr />
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            &nbsp;
+                            <button type="button" class="btn btn-success" data-bs-dismiss="modal"
+                                (click)="adicionarProduto(itemProduto)">
+                                Adicionar ao carrinho de compras
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
